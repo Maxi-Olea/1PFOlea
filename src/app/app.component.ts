@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'PrimerPFOlea';
+  isLoggedIn: boolean = false;
+
+  checkLogin(e:boolean) {
+    console.log('Evento recibido', e)
+    this.isLoggedIn = e;
+  }
 }
