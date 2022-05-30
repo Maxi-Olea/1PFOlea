@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Student } from 'src/app/Interfaces/student.interface';
 import { User } from 'src/app/Interfaces/user.interface';
 
 @Component({
@@ -9,9 +8,9 @@ import { User } from 'src/app/Interfaces/user.interface';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() user:User = {username:'', rol:''};
-  @Output() addStudent = new EventEmitter<boolean>();
-  @Output() home = new EventEmitter<boolean>();
+  @Input() user!:User;
+  @Output() viewOption = new EventEmitter<string>();
+
   
   
   constructor() { }
@@ -20,11 +19,19 @@ export class NavbarComponent implements OnInit {
   }
 
   onClickHome() { //Emite un evento al app component para que se renderice el listado de estudiantes
-    this.home.emit(true);
+    this.viewOption.emit('home');
+  }
+
+  onClickNewUser(){ //Emite un evento al app component para quese renderice el form de usuarios
+    this.viewOption.emit('add-user');
   }
 
   onClickAdd() { //Emite un evento al app component para agregar a un estudiante nuevo
-    this.addStudent.emit(true)
+    this.viewOption.emit('add-student')
+  }
+
+  onClickCourse() { //Emite un evento al app component para listar los cursos
+    this.viewOption.emit('courses');
   }
 
 

@@ -11,6 +11,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { CoursesListComponent } from './components/courses-list/courses-list.component';
+import { CourseFormComponent } from './components/course-form/course-form.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { StudentFormComponent } from './components/student-form/student-form.com
     NavbarComponent,
     ToolbarComponent,
     StudentsListComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    UserFormComponent,
+    CoursesListComponent,
+    CourseFormComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from 'src/app/Interfaces/student.interface';
 
+
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',

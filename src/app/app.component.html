@@ -9,11 +9,38 @@
     </div>
     <div class="row">
         <div class="col-2">
-            <app-navbar [user]="userData" (home)="showHome($event)" (addStudent)="onPassAddStudent($event)"  ></app-navbar>
+            <app-navbar [user]="userData" (viewOption)="onViewOption($event)"  ></app-navbar>
         </div>
-        <div class="col-10">
-            <app-students-list *ngIf="!addStudent" [user]="userData" [students]="studentsData" (editStudent)="onPassEditStudent($event)" ></app-students-list>
-            <app-student-form *ngIf="addStudent" (studentAdded)="onAddStudent($event)" [studentToEdit]="studentToEdit" (studentEdited)="onStudentEdit($event)" ></app-student-form>
+        <div class="col-10" [ngSwitch]="viewOption">
+            <app-students-list *ngSwitchCase="'home'" 
+              [user]="userData" 
+              [students]="studentsData" 
+              (editStudent)="onPassEditStudent($event)" 
+              (studentsUpdated)="onUpdateDeleteStudents($event)" >
+            </app-students-list>
+            <app-student-form *ngSwitchCase="'add-student'" 
+              [studentToEdit]="studentToEdit" 
+              (studentAdded)="onAddStudent($event)" 
+              (studentEdited)="onStudentEdit($event)" >
+            </app-student-form>
+            <app-users-list *ngSwitchCase="'users'"
+              [usr]="userData"
+              [users]="users" ></app-users-list>
+            <app-user-form *ngSwitchCase="'add-user'" 
+              (newUser)="onAddUser($event)">
+            </app-user-form>
+            <app-courses-list *ngSwitchCase="'courses'" 
+              [user]="userData" 
+              [courses]="courses" 
+              (viewOption)="onViewOption($event)" 
+              (editCourse)="onPassEditCourse($event)" 
+              (coursesUpdated)="onUpdateDeleteCourses($event)" >
+            </app-courses-list>
+            <app-course-form *ngSwitchCase="'add-course'" 
+              [courseToEdit]="courseToEdit" 
+              (courseAdded)="onAddCourse($event)" 
+              (courseEdited)="onCourseEdit($event)" >
+            </app-course-form>
         </div>
     </div>
   </div>

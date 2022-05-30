@@ -11,7 +11,7 @@ import { User } from 'src/app/Interfaces/user.interface';
 export class StudentsListComponent implements OnInit {
 
   @Input() students: Student[] = []; //Datos de los estudiantes que recibimos desde el app component (Padre)
-  @Input() user: User = {username:'', rol:''} //Datos del usuario logueado recibidos del app component (padre)
+  @Input() user!: User; //Datos del usuario logueado recibidos del app component (padre)
   @ViewChild('table') table!: MatTable<any>;
   @Output() studentsUpdated = new EventEmitter<Student[] | null>(); //Array de estudiantes que se envia al app component (de hijo al padre)
   @Output() editStudent = new EventEmitter<Student>();
