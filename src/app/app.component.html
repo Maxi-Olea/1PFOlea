@@ -1,8 +1,20 @@
 <div *ngIf="!isLoggedIn">
-  <app-login (isLoggedIn)="checkLogin($event)"></app-login>
+  <app-login (isLoggedIn)="checkLogin($event)" [users]="users"></app-login>
 </div>
 
-<div *ngIf="isLoggedIn">
-  
-  <h1>Esto se muestra cuando estas logueado</h1>
+<div *ngIf="isLoggedIn">  
+  <div class="container-fluid p-0">
+    <div class="row">
+        <app-toolbar [user]="userData" (logOut)="logout($event)" ></app-toolbar>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <app-navbar [user]="userData" (home)="showHome($event)" (addStudent)="onPassAddStudent($event)"  ></app-navbar>
+        </div>
+        <div class="col-10">
+            <app-students-list *ngIf="!addStudent" [user]="userData" [students]="studentsData" (editStudent)="onPassEditStudent($event)" ></app-students-list>
+            <app-student-form *ngIf="addStudent" (studentAdded)="onAddStudent($event)" [studentToEdit]="studentToEdit" (studentEdited)="onStudentEdit($event)" ></app-student-form>
+        </div>
+    </div>
+  </div>
 </div>

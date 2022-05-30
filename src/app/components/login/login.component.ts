@@ -1,5 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from 'src/app/Interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  @Output() isLoggedIn: EventEmitter<boolean> = new EventEmitter();
+  @Input() users: User[] = [];
+  @Output() isLoggedIn: EventEmitter<User> = new EventEmitter();
 
-  users = [
-    { username: 'Admin', password: 'admin1234', rol: 'admin' },
-    { username: 'User1', password: 'user1234', rol: 'user' }
-  ];
   
   loginForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
@@ -36,37 +36,18 @@ export class LoginComponent implements OnInit {
     console.log('userData: ', userData)
     if(userData?.password === this.loginForm.get('password')?.value) {
       console.log('Las contraseñas coinciden')
-      this.isLoggedIn.emit(true)
+      const userLogged:User = {username:userData!.username, rol:userData!.rol}
+      this.isLoggedIn.emit(userLogged)
       console.log('IsLoggedIn: ', this.isLoggedIn)
     }else {
       console.log('Las contraseñas no coinciden')
+      this.openToast()
+      this.loginForm.reset()
     }
-    // switch(this.loginForm.get('username')?.value) {
-    //   case 'Admin':
-    //     console.log('El usuario logueado es el Admin')
-    //     this.validateUser('Admin')
-    //     console.log(this.isLoggedIn)
-    //     break;
-    //   case 'User1':
-    //     console.log('El usuario logueado es User1')
-    //     this.validateUser('User1')
-    //     console.log(this.isLoggedIn)
-    //     break;
-    //   default:
-    //     console.log('El usuario no es valido')
-    //     break;
-    // }
   }
 
-  // validateUser(username: string) {
-  //   const userData = this.users.find(user => user.username === username)
-  //   console.log('userData: ', userData)
-  //   if(userData?.password === this.loginForm.get('password')?.value) {
-  //     console.log('Las contraseñas coinciden')
-  //     this.isLoggedIn = true;
-  //   }else {
-  //     console.log('Las contraseñas no coinciden')
-  //   }
-  //}
+  openToast() {
+    this._snackBar.open('El usuario y/o la contraseña ingresadas son incorrectas', 'Cerrar')
+  }
 
 }
