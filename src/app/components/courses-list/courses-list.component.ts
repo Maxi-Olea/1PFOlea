@@ -45,10 +45,4 @@ export class CoursesListComponent implements OnInit {
     this.coursesUpdated.emit(this.courses);
   }
 
-  applyFilter(event: Event) {
-    console.log((event.target as HTMLInputElement).value)
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
 }

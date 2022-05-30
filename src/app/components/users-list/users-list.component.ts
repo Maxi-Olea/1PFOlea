@@ -46,10 +46,4 @@ export class UsersListComponent implements OnInit {
     
   }
 
-  applyFilter(event: Event) {
-    console.log((event.target as HTMLInputElement).value)
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
 }

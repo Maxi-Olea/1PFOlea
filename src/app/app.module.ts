@@ -15,6 +15,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseFormComponent } from './components/course-form/course-form.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { NamePipe } from './pipes/name.pipe';
+import { FontSizeDirective } from './directives/font-size.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { UsersListComponent } from './components/users-list/users-list.component
     UserFormComponent,
     CoursesListComponent,
     CourseFormComponent,
-    UsersListComponent
+    UsersListComponent,
+    NamePipe,
+    FontSizeDirective
   ],
   imports: [
     BrowserModule,
