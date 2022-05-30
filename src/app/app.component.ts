@@ -11,11 +11,10 @@ import { User } from './Interfaces/user.interface';
 export class AppComponent {
   title = 'PrimerPFOlea';
 
-  isLoggedIn: boolean = true;
-  viewOption: string = 'users'; //Propiedad que define el componente a renderizar
+  isLoggedIn: boolean = false;
+  viewOption: string = 'home'; //Propiedad que define el componente a renderizar
 
-  userData:User = {id:0, username:'lala', rol:'admin'}
-  //addStudent:boolean = false;
+  userData!:User  
   addUser:boolean = false;
   studentToEdit!:Student|null; //Propiedad que utilizamos para pasar los datos del estudiante a editar
   courseToEdit!: Courses|null; //Propiedad que utilizamos para pasar el curso a editar
