@@ -3,6 +3,6 @@
   <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickAdd()" mat-menu-item>Agregar estudiante</button>
   <button (click)="onClickCourse()" mat-menu-item>Cursos</button>
   <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'"  mat-menu-item>Administrar inscripciones</button>
-  <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickNewUser()" mat-menu-item>Gestionar Usuarios</button>
+  <button [ngClass]="user.rol === 'admin' ? '' : 'd-none'" (click)="onClickUser()" mat-menu-item>Gestionar Usuarios</button>
 </mat-selection-list>
 

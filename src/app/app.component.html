@@ -25,9 +25,16 @@
             </app-student-form>
             <app-users-list *ngSwitchCase="'users'"
               [usr]="userData"
-              [users]="users" ></app-users-list>
+              [users]="users"
+              (viewOption)="onViewOption($event)"
+              (editUser)="onPassEditUser($event)"
+              (usersUpdated)="onUpdateDeleteUsers($event)" >
+            </app-users-list>
             <app-user-form *ngSwitchCase="'add-user'" 
-              (newUser)="onAddUser($event)">
+              [userToEdit]="userToEdit"
+              [users]="users"
+              (newUser)="onAddUser($event)"
+              (userEdited)="onUserEdit($event)">
             </app-user-form>
             <app-courses-list *ngSwitchCase="'courses'" 
               [user]="userData" 

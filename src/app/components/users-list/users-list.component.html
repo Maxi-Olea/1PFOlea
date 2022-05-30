@@ -10,10 +10,10 @@
   <table #table mat-table [dataSource]="users" class="mat-elevation-z8 px-0 w-100">
   
     <!-- Id Column -->
-    <!-- <ng-container matColumnDef="id">
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let user"> {{user.id}} </td>
-    </ng-container> -->
+    </ng-container>
   
     <!-- UserId Column -->
     <ng-container matColumnDef="username">

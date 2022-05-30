@@ -8,7 +8,7 @@ import { User } from 'src/app/Interfaces/user.interface';
 })
 export class ToolbarComponent implements OnInit {
 
-  @Input() user:User = {username:'', rol:''}; //Datos del user logueado recibidos desde el app component (padre)
+  @Input() user:User = {id: 0, username:'', rol:''}; //Datos del user logueado recibidos desde el app component (padre)
   @Output() logOut: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }

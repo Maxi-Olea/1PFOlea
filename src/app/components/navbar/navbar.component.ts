@@ -22,8 +22,8 @@ export class NavbarComponent implements OnInit {
     this.viewOption.emit('home');
   }
 
-  onClickNewUser(){ //Emite un evento al app component para quese renderice el form de usuarios
-    this.viewOption.emit('add-user');
+  onClickUser(){ //Emite un evento al app component para quese renderice el form de usuarios
+    this.viewOption.emit('users');
   }
 
   onClickAdd() { //Emite un evento al app component para agregar a un estudiante nuevo

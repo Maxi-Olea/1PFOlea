@@ -16,7 +16,7 @@ export class UsersListComponent implements OnInit {
   @ViewChild('table') table!: MatTable<any>;
   @Output() usersUpdated = new EventEmitter<User[] | null>(); //Array de cursos que se envia al app component (de hijo al padre)
 
-  displayedColumns = ['username', 'rol', 'actions'];
+  displayedColumns = ['id', 'username', 'rol', 'actions'];
   dataSource = new MatTableDataSource(this.users);
 
 
@@ -39,6 +39,10 @@ export class UsersListComponent implements OnInit {
     Se elimina por el index, y luego usando el ViewChild, se renderiza de nuevo la tabla.
     Por ultimo, emitimos el valor de usersUpdated al padre */
     console.log('elemento: ', user)
+    let index=this.users.findIndex(x=> x.id===user.id);
+    this.users.splice(index,1);
+    this.table.renderRows();
+    this.usersUpdated.emit(this.users);
     
   }
 

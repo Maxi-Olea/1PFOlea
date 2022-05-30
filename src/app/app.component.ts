@@ -14,15 +14,16 @@ export class AppComponent {
   isLoggedIn: boolean = true;
   viewOption: string = 'users'; //Propiedad que define el componente a renderizar
 
-  userData:User = {username:'lala', rol:'admin'}
+  userData:User = {id:0, username:'lala', rol:'admin'}
   //addStudent:boolean = false;
   addUser:boolean = false;
   studentToEdit!:Student|null; //Propiedad que utilizamos para pasar los datos del estudiante a editar
   courseToEdit!: Courses|null; //Propiedad que utilizamos para pasar el curso a editar
+  userToEdit!: User|null; //Propiedad que utilizamos para pasar los datos del usuario a editar
 
   users:User[] = [ //Datos de usuarios para login
-    { username: 'Admin', password: 'admin1234', rol: 'admin' },
-    { username: 'User1', password: 'user1234', rol: 'user' }
+    { id:1, username: 'Admin', password: 'admin1234', rol: 'admin' },
+    { id:2, username: 'User1', password: 'user1234', rol: 'user' }
   ];
   courses: Courses[] = [ //Datos de los cursos a listar que se envian al componente coursesList
     {id:1, course: 'Angular'},
@@ -53,16 +54,12 @@ export class AppComponent {
     this.viewOption = option
     this.studentToEdit = null
     this.courseToEdit = null
+    this.userToEdit = null
   }
 
 
 
-  onAddUser(user:User) { //Este metodo hace el update de los users de la aplicacion
-    console.log('usuario recibido: ', user)
-    this.users.push(user)
-    console.log('los usuaruios registrados son: ', this.users);
-    this.addUser = false;
-  }
+  
 
   // onPassAddStudent(e:boolean) { //Pasa al formulario para agregar un estudiante y dejamos en null el studentToEdit
   //   this.viewOption = 'add-student'
@@ -149,6 +146,38 @@ export class AppComponent {
       el['id']=index+1
     })
     this.courses=courses;
+  }
+
+  onAddUser(user:User) { //Este metodo hace el update de los users de la aplicacion
+    console.log('usuario recibido: ', user)
+    this.users.push(user)
+    console.log('los usuaruios registrados son: ', this.users);
+    this.viewOption = 'users'
+  }
+
+  onPassEditUser(e:User) { //Le asignamos al studentToedit los datos del estudiante a editar y pasa a formulario
+    console.log('user recibido que se va a editar: ', e);
+    if(e) {
+      this.viewOption = 'add-user'
+      this.userToEdit = e;
+    }
+  }
+
+  onUserEdit(e:User){
+    /*Una vez editado, se busca en la data que se le pasa a la tabla, cual es el elemento editado
+    Y le cambia el valor*/
+    let index=this.users.findIndex((x:User)=>x.id===e.id);
+    this.users[index]=e;
+    this.viewOption = 'users'
+  }
+
+  onUpdateDeleteUsers(el:any) {
+    /* Una vez editado por el delete, 
+    se modifican los ids (para evitar errores en delete) y ademas hace un update del valor de data */
+    el.forEach((el:any,index:number)=>{
+      el['id']=index+1
+    })
+    this.users=el;
   }
 
 }

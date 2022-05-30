@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/Interfaces/user.interface'
 
@@ -14,7 +14,10 @@ interface Rol {
 })
 export class UserFormComponent implements OnInit {
 
+  @Input() userToEdit!:User|null;
+  @Input() users!:User[];
   @Output() newUser = new EventEmitter<User>(); //Usuario agregado que se envia al app component (del hijo al padre)
+  @Output() userEdited = new EventEmitter<User>();
 
   userForm: FormGroup;
   roles:Rol[] = [{value:'admin', viewValue:'Administrador'}, {value:'user', viewValue:'Usuario'}];
@@ -31,10 +34,31 @@ export class UserFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    if(this.userToEdit) {
+      this.userForm.get('username')?.patchValue(this.userToEdit.username)
+      this.userForm.get('rol')?.patchValue(this.userToEdit.rol)
+    }
   }
 
   onSubmit() {
     console.log(this.userForm.value)
+    /*Evalua si el elemento es nuevo o a editar, si es nuevo => emite courseAdded.
+    Si es a editar emite el userEdited*/
+    if(!this.userToEdit) {
+      console.log('entre a agregar un user')
+      let usr:User = {
+        id: this.users.length + 1,
+        username: this.userForm.get('username')?.value,
+        password: this.userForm.get('password')?.value,
+        rol: this.userForm.get('rol')?.value
+      }
+      this.newUser.emit(usr);
+    } else {
+      console.log('entre a editar')
+      this.userForm.value['id'] = this.userToEdit.id;
+      let user = this.userForm.value;
+      this.userEdited.emit(user);
+    }
     // let user:User = {
     //   username: this.userForm.get('username')?.value,
     //   password: this.userForm.get('password')?.value,
