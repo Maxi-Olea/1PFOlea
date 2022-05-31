@@ -3,9 +3,9 @@
 
     <h3>Alumno: {{ student.name | name:student.lastname }}</h3>
 
-    <mat-card class="user-card p-4">
+    <mat-card class="inscription-card p-4">
         <mat-card-header>
-            <mat-card-title>Crear Usuario</mat-card-title>
+            <mat-card-title>Seleccionar Curso</mat-card-title>
         </mat-card-header>
         <form  [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
             <mat-card-content>                  
