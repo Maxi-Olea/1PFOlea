@@ -30,7 +30,6 @@ export class CoursesListComponent implements OnInit {
   }
 
   onClickEdit(course: Courses) {
-    console.log('elemtno recibido: ', course)
     this.editCourse.emit(course)
   }
 
@@ -38,7 +37,6 @@ export class CoursesListComponent implements OnInit {
     /* Se busca el elemento por el id en el array de cursos,
     Se elimina por el index, y luego usando el ViewChild, se renderiza de nuevo la tabla.
     Por ultimo, emitimos el valor de coursesUpdated al padre */
-    console.log('elemento: ', course)
     let index=this.courses.findIndex(x=> x.id===course.id);
     this.courses.splice(index,1);
     this.table.renderRows();

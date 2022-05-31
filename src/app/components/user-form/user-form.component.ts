@@ -41,11 +41,9 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.userForm.value)
     /*Evalua si el elemento es nuevo o a editar, si es nuevo => emite courseAdded.
     Si es a editar emite el userEdited*/
     if(!this.userToEdit) {
-      console.log('entre a agregar un user')
       let usr:User = {
         id: this.users.length + 1,
         username: this.userForm.get('username')?.value,
@@ -54,17 +52,11 @@ export class UserFormComponent implements OnInit {
       }
       this.newUser.emit(usr);
     } else {
-      console.log('entre a editar')
       this.userForm.value['id'] = this.userToEdit.id;
       let user = this.userForm.value;
       this.userEdited.emit(user);
     }
-    // let user:User = {
-    //   username: this.userForm.get('username')?.value,
-    //   password: this.userForm.get('password')?.value,
-    //   rol: this.userForm.get('rol')?.value
-    // }
-    // this.newUser.emit(user)
+    
   }
 
   checkPassword(group: FormGroup): any {

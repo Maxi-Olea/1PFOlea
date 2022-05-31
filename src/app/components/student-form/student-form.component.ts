@@ -37,14 +37,11 @@ export class StudentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.studentForm.value)
     /*Evalua si el elemento es nuevo o a editar, si es nuevo => emite studentAdded.
     Si es a editar emite el studentEdited*/
     if(!this.studentToEdit){
-      console.log('entre a agregar un estudiante')
       this.studentAdded.emit(this.studentForm.value);
     }else{
-      console.log('entre a editar')
       this.studentForm.value['id']=this.studentToEdit.id
       let student=this.studentForm.value;
       this.studentEdited.emit(student);

@@ -34,6 +34,5 @@ export class NavbarComponent implements OnInit {
     this.viewOption.emit('courses');
   }
 
-
-
+ 
 }

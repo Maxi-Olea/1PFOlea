@@ -30,17 +30,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('IsLoggedIn: ', this.isLoggedIn)
-    console.log('El formulario es: ', this.loginForm.value)
     const userData = this.users.find(user => user.username === this.loginForm.get('username')?.value)
-    console.log('userData: ', userData)
     if(userData?.password === this.loginForm.get('password')?.value) {
-      console.log('Las contraseñas coinciden')
       const userLogged:User = {username:userData!.username, rol:userData!.rol}
       this.isLoggedIn.emit(userLogged)
-      console.log('IsLoggedIn: ', this.isLoggedIn)
     }else {
-      console.log('Las contraseñas no coinciden')
       this.openToast()
       this.loginForm.reset()
     }

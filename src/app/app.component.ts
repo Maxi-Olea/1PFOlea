@@ -11,10 +11,10 @@ import { User } from './Interfaces/user.interface';
 export class AppComponent {
   title = 'PrimerPFOlea';
 
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   viewOption: string = 'home'; //Propiedad que define el componente a renderizar
 
-  userData:User = {id:0, username:'', rol:'admin'}  
+  userData!:User 
   addUser:boolean = false;
   studentToEdit!:Student|null; //Propiedad que utilizamos para pasar los datos del estudiante a editar
   courseToEdit!: Courses|null; //Propiedad que utilizamos para pasar el curso a editar
@@ -40,8 +40,7 @@ export class AppComponent {
 
   //METODOS
 
-  checkLogin(e:User) {
-    console.log('Evento recibido', e)
+  checkLogin(e:User) { //Asigno los datos del usuario logueado
     this.isLoggedIn = true;
     this.userData = e
   }
@@ -71,7 +70,6 @@ export class AppComponent {
   // }
 
   onAddStudent(e:Student) { //En este metodo se hace un update de los estudiantes y además que se modifica el id manualmente por el front
-    console.log('evento recibido: ', e)
     let index=1;
     if(this.studentsData.length>0){
       index=this.studentsData.length+1;
@@ -85,7 +83,6 @@ export class AppComponent {
   }
 
   onPassEditStudent(e:Student) { //Le asignamos al studentToedit los datos del estudiante a editar y pasa a formulario
-    console.log('estudiante recibido que se va a editar: ', e);
     if(e) {
       this.viewOption = 'add-student'
       this.studentToEdit = e;
@@ -110,7 +107,6 @@ export class AppComponent {
   }
 
   onAddCourse(e:Courses) { //En este metodo se hace un update de los cursos y además que se modifica el id manualmente por el front
-    console.log('evento recibido: ', e)
     let index=1;
     if(this.courses.length>0){
       index=this.courses.length+1;
@@ -124,7 +120,6 @@ export class AppComponent {
   }
 
   onPassEditCourse(e:Courses) { //Le asignamos al courseToedit los datos del curso a editar y pasa a formulario
-    console.log('estudiante curso que se va a editar: ', e);
     if(e) {
       this.viewOption = 'add-course'
       this.courseToEdit = e;
@@ -149,14 +144,11 @@ export class AppComponent {
   }
 
   onAddUser(user:User) { //Este metodo hace el update de los users de la aplicacion
-    console.log('usuario recibido: ', user)
     this.users.push(user)
-    console.log('los usuaruios registrados son: ', this.users);
     this.viewOption = 'users'
   }
 
   onPassEditUser(e:User) { //Le asignamos al studentToedit los datos del estudiante a editar y pasa a formulario
-    console.log('user recibido que se va a editar: ', e);
     if(e) {
       this.viewOption = 'add-user'
       this.userToEdit = e;
@@ -189,8 +181,6 @@ export class AppComponent {
     this.viewOption = 'home'
     let index=this.studentsData.findIndex((x:Student)=>x.id===student.id);
     this.studentsData[index]=student;
-    console.log('Los estudiantes con las inscripciones actualizadas: ', this.studentsData)
-
   }
 
 }

@@ -31,14 +31,11 @@ export class CourseFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.courseForm.value)
     /*Evalua si el elemento es nuevo o a editar, si es nuevo => emite courseAdded.
     Si es a editar emite el courseEdited*/
     if(!this.courseToEdit){
-      console.log('entre a agregar un curso')
       this.courseAdded.emit(this.courseForm.value);
     }else{
-      console.log('entre a editar')
       this.courseForm.value['id']=this.courseToEdit.id
       let course=this.courseForm.value;
       this.courseEdited.emit(course);

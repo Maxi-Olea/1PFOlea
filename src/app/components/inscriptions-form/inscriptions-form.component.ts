@@ -28,9 +28,8 @@ export class InscriptionsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.inscriptionForm.value)
-    this.student.cursos?.push(this.inscriptionForm.get('course')?.value)
-    this.studentToUpdate.emit(this.student)
+      this.student.cursos?.push(this.inscriptionForm.get('course')?.value)
+      this.studentToUpdate.emit(this.student)
   }
 
 }

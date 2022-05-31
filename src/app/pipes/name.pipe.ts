@@ -7,7 +7,6 @@ import { Student } from '../Interfaces/student.interface';
 export class NamePipe implements PipeTransform {
 
   transform(value: string, args?: string): string {
-    console.log(args)
     if(args) {
       return `${ args.toUpperCase() }, ${ value }`
     }
