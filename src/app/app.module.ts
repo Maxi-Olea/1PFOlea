@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
@@ -17,12 +16,13 @@ import { CourseFormComponent } from './components/course-form/course-form.compon
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { NamePipe } from './pipes/name.pipe';
 import { FontSizeDirective } from './directives/font-size.directive';
+import { InscriptionsFormComponent } from './components/inscriptions-form/inscriptions-form.component';
+import { CourseNamePipe } from './pipes/course-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
     NavbarComponent,
     ToolbarComponent,
     StudentsListComponent,
@@ -32,7 +32,9 @@ import { FontSizeDirective } from './directives/font-size.directive';
     CourseFormComponent,
     UsersListComponent,
     NamePipe,
-    FontSizeDirective
+    FontSizeDirective,
+    InscriptionsFormComponent,
+    CourseNamePipe
   ],
   imports: [
     BrowserModule,

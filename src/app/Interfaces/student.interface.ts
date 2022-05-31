@@ -4,5 +4,5 @@ export interface Student {
     lastname: string;
     email: string;
     birthday?: Date;
-    cursos?: number[];
+    cursos?: string[];
 }

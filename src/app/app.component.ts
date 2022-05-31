@@ -11,14 +11,15 @@ import { User } from './Interfaces/user.interface';
 export class AppComponent {
   title = 'PrimerPFOlea';
 
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   viewOption: string = 'home'; //Propiedad que define el componente a renderizar
 
-  userData!:User  
+  userData:User = {id:0, username:'', rol:'admin'}  
   addUser:boolean = false;
   studentToEdit!:Student|null; //Propiedad que utilizamos para pasar los datos del estudiante a editar
   courseToEdit!: Courses|null; //Propiedad que utilizamos para pasar el curso a editar
   userToEdit!: User|null; //Propiedad que utilizamos para pasar los datos del usuario a editar
+  studentToInscribe!:Student; //Propiedad que utilizamos para pasar el estudiante a la inscripcion de cursos
 
   users:User[] = [ //Datos de usuarios para login
     { id:1, username: 'Admin', password: 'admin1234', rol: 'admin' },
@@ -27,14 +28,14 @@ export class AppComponent {
   courses: Courses[] = [ //Datos de los cursos a listar que se envian al componente coursesList
     {id:1, course: 'Angular'},
     {id:2, course: 'React'},
-    {id:3, course: 'Vue'},
+    {id:3, course: 'VueJS'},
     {id:4, course: 'Nodejs'},
     {id:5, course: 'Python'},
     {id:6, course: 'Java'},
   ];    
   studentsData: Student[] = [ //Datos de los estudiantes que se envía al componente StudentsList
-    {id: 1, name: 'Juan', lastname: 'Lopez', email: 'jlopez@mail.com', cursos: [1]},
-    {id: 2, name: 'Pedro', lastname: 'Perez', email: 'pperez@mail.com', cursos: [1, 3]},    
+    {id: 1, name: 'Juan', lastname: 'Lopez', email: 'jlopez@mail.com', cursos: ['Angular']},
+    {id: 2, name: 'Pedro', lastname: 'Perez', email: 'pperez@mail.com', cursos: ['Angular', 'Node-JS']},    
   ]; 
 
   //METODOS
@@ -177,6 +178,19 @@ export class AppComponent {
       el['id']=index+1
     })
     this.users=el;
+  }
+
+  onPassAddInscription(student:Student) {
+    this.viewOption = 'add-inscription'
+    this.studentToInscribe = student
+  }
+
+  onAddInscription(student:Student) {
+    this.viewOption = 'home'
+    let index=this.studentsData.findIndex((x:Student)=>x.id===student.id);
+    this.studentsData[index]=student;
+    console.log('Los estudiantes con las inscripciones actualizadas: ', this.studentsData)
+
   }
 
 }

@@ -15,8 +15,9 @@ export class StudentsListComponent implements OnInit {
   @ViewChild('table') table!: MatTable<any>;
   @Output() studentsUpdated = new EventEmitter<Student[] | null>(); //Array de estudiantes que se envia al app component (de hijo al padre)
   @Output() editStudent = new EventEmitter<Student>();
+  @Output() addInscription = new EventEmitter<Student>();
   
-  displayedColumns = ['id', 'name', 'actions'];
+  displayedColumns = ['id', 'name', 'courses', 'actions'];
   dataSource = new MatTableDataSource(this.students);
 
   constructor() { }
@@ -44,6 +45,11 @@ export class StudentsListComponent implements OnInit {
   onClickEdit(student:Student) { //Emite un evento al app component con los datos del estudiante a editar
     console.log('Estudiante que se va a enviar a editar: ', student)
     this.editStudent.emit(student)
+  }
+
+  onClickInscription(student:Student) {
+    console.log('el estudiante que se va a inscribir: ', student)
+    this.addInscription.emit(student)
   }
 
 }

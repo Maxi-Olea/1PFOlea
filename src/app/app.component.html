@@ -16,7 +16,8 @@
               [user]="userData" 
               [students]="studentsData" 
               (editStudent)="onPassEditStudent($event)" 
-              (studentsUpdated)="onUpdateDeleteStudents($event)" >
+              (studentsUpdated)="onUpdateDeleteStudents($event)"
+              (addInscription)="onPassAddInscription($event)" >
             </app-students-list>
             <app-student-form *ngSwitchCase="'add-student'" 
               [studentToEdit]="studentToEdit" 
@@ -48,6 +49,11 @@
               (courseAdded)="onAddCourse($event)" 
               (courseEdited)="onCourseEdit($event)" >
             </app-course-form>
+            <app-inscriptions-form *ngSwitchCase="'add-inscription'"
+              [courses]="courses"
+              [student]="studentToInscribe"
+              (studentToUpdate)="onAddInscription($event)" >
+            </app-inscriptions-form>
         </div>
     </div>
   </div>
